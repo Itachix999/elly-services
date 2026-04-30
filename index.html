@@ -1,0 +1,1741 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elly Services — Fast, Safe & Trusted Package Transfer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── ROOT VARS ─────────────────────────────────────────────────────────── */
+    :root {
+      --red:    #D01020;
+      --red2:   #FF1A30;
+      --black:  #0A0A0A;
+      --dark:   #141414;
+      --card:   #1A1A1A;
+      --white:  #F5F0EB;
+      --grey:   #888;
+      --border: rgba(208,16,32,0.25);
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body:    'Barlow', sans-serif;
+      --transition:   0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* ─── RESET ─────────────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-weight: 300;
+      overflow-x: hidden;
+      cursor: none;
+      transition: opacity 0.3s;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ─── RTL SUPPORT ───────────────────────────────────────────────────────── */
+    [dir="rtl"] .hero-content { align-items: flex-end; text-align: right; }
+    [dir="rtl"] .stat { border-left: none; border-right: 2px solid var(--red); padding-left: 0; padding-right: 1rem; }
+    [dir="rtl"] .section-label { text-align: right; }
+    [dir="rtl"] .about-grid { direction: rtl; }
+    [dir="rtl"] .hero-badge { flex-direction: row-reverse; }
+    [dir="rtl"] nav { direction: rtl; }
+    [dir="rtl"] .nav-links { flex-direction: row-reverse; }
+    [dir="rtl"] .footer-links { flex-direction: row-reverse; }
+    [dir="rtl"] .route-bar { flex-direction: row-reverse; }
+    [dir="rtl"] .contact-header { text-align: right; }
+    [dir="rtl"] .dest-header { text-align: right; }
+    [dir="rtl"] .why-header { text-align: right; }
+
+    /* ─── LANG TRANSITION ───────────────────────────────────────────────────── */
+    .lang-fade { animation: langFadeIn 0.4s ease both; }
+    @keyframes langFadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* ─── CUSTOM CURSOR ──────────────────────────────────────────────────────── */
+    #cursor {
+      position: fixed; top: 0; left: 0; z-index: 9999;
+      width: 12px; height: 12px;
+      background: var(--red);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%,-50%);
+      transition: width .15s, height .15s, background .15s;
+      mix-blend-mode: difference;
+    }
+    #cursor.big { width: 40px; height: 40px; background: var(--red2); }
+    @media (hover: none) { #cursor { display: none; } body { cursor: auto; } }
+
+    /* ─── NOISE OVERLAY ──────────────────────────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 1;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none;
+    }
+
+    /* ─── NAV ────────────────────────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(10,10,10,0.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      transition: padding .3s;
+    }
+    nav.scrolled { padding: .8rem 3rem; }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .nav-logo span { color: var(--red); }
+    .nav-center { display: flex; align-items: center; gap: 0; flex: 1; justify-content: center; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: .85rem;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--grey);
+      transition: color .2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: var(--red);
+      transition: width .3s;
+    }
+    .nav-links a:hover, .nav-links a.active-nav { color: var(--white); }
+    .nav-links a:hover::after, .nav-links a.active-nav::after { width: 100%; }
+
+    /* ─── LANGUAGE SWITCHER ─────────────────────────────────────────────────── */
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .lang-switcher { display: flex; gap: 4px; align-items: center; }
+    .lang-btn {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--grey);
+      font-family: var(--font-body);
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      padding: .3rem .6rem;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: all .2s;
+      text-transform: uppercase;
+    }
+    .lang-btn:hover { border-color: var(--red); color: var(--white); }
+    .lang-btn.active { background: var(--red); border-color: var(--red); color: var(--white); }
+    .nav-cta {
+      background: var(--red);
+      color: var(--white) !important;
+      padding: .45rem 1.4rem;
+      font-weight: 600 !important;
+      letter-spacing: 1px;
+      border-radius: 2px;
+      transition: background .2s, transform .15s !important;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { background: var(--red2) !important; transform: translateY(-1px); }
+    .nav-cta::after { display: none !important; }
+
+    /* hamburger */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 26px; height: 2px; background: var(--white); transition: all .3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* mobile menu */
+    .mobile-menu {
+      display: none; position: fixed; inset: 0; z-index: 99;
+      background: var(--black);
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 2.5rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      letter-spacing: 3px;
+      color: var(--white);
+      transition: color .2s;
+    }
+    .mobile-menu a:hover { color: var(--red); }
+    .mobile-lang { display: flex; gap: 8px; margin-top: 1rem; }
+
+    /* ─── PAGE TABS (About / Contact) ───────────────────────────────────────── */
+    .tab-switcher {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 0 1.5rem;
+    }
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--grey);
+      font-family: var(--font-body);
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: .45rem 1.1rem;
+      cursor: pointer;
+      transition: all .25s;
+      border-right: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    .tab-btn:last-child { border-right: none; }
+    .tab-btn:hover { color: var(--white); background: rgba(255,255,255,0.05); }
+    .tab-btn.active { background: var(--red); color: var(--white); }
+
+    /* ─── ANIMATED BACKGROUND SCENE ────────────────────────────────────────── */
+    #scene-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.55;
+    }
+
+    /* ─── HERO ───────────────────────────────────────────────────────────────── */
+    #home {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: flex-start;
+      padding: 10rem 3rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg-grid {
+      position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(208,16,32,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(208,16,32,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridShift 20s linear infinite;
+    }
+    @keyframes gridShift {
+      from { background-position: 0 0; }
+      to   { background-position: 60px 60px; }
+    }
+    .hero-orb {
+      position: absolute; z-index: 0;
+      border-radius: 50%;
+      filter: blur(120px);
+      animation: orbFloat 8s ease-in-out infinite alternate;
+    }
+    .hero-orb-1 { width: 600px; height: 600px; background: rgba(208,16,32,0.14); top: -150px; right: -100px; }
+    .hero-orb-2 { width: 350px; height: 350px; background: rgba(208,16,32,0.08); bottom: 0; left: 20%; animation-delay: -4s; }
+    @keyframes orbFloat {
+      from { transform: translateY(0) scale(1); }
+      to   { transform: translateY(-40px) scale(1.08); }
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 900px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      border: 1px solid var(--border);
+      padding: .35rem 1rem;
+      font-size: .75rem; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--red); margin-bottom: 1.5rem;
+      animation: fadeUp .6s ease both;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--red);
+      animation: pulse 1.5s infinite;
+      flex-shrink: 0;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: .4; transform: scale(1.5); }
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 10vw, 9rem);
+      line-height: .9;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      animation: fadeUp .6s ease .1s both;
+    }
+    .hero-title .red { color: var(--red); }
+    .hero-title .stroke {
+      -webkit-text-stroke: 1.5px var(--white);
+      color: transparent;
+    }
+    .hero-sub {
+      margin-top: 1.5rem;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 300;
+      color: rgba(245,240,235,0.65);
+      max-width: 560px;
+      line-height: 1.7;
+      animation: fadeUp .6s ease .2s both;
+    }
+    .hero-actions {
+      margin-top: 2.5rem;
+      display: flex; flex-wrap: wrap; gap: 1rem;
+      animation: fadeUp .6s ease .3s both;
+    }
+    .btn-primary {
+      background: var(--red);
+      color: var(--white);
+      padding: .9rem 2.2rem;
+      font-weight: 600;
+      font-size: .9rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border: 2px solid var(--red);
+      cursor: pointer;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      position: relative; overflow: hidden;
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+      transform: translateX(-100%);
+      transition: transform .4s;
+    }
+    .btn-primary:hover { background: var(--red2); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(208,16,32,0.4); }
+    .btn-primary:hover::after { transform: translateX(100%); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--white);
+      padding: .9rem 2.2rem;
+      font-weight: 500;
+      font-size: .9rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border: 1.5px solid rgba(245,240,235,0.2);
+      cursor: pointer;
+      transition: border-color .2s, color .2s, transform .15s;
+    }
+    .btn-ghost:hover { border-color: var(--red); color: var(--red); transform: translateY(-2px); }
+    .hero-stats {
+      margin-top: 4rem;
+      display: flex; flex-wrap: wrap; gap: 3rem;
+      animation: fadeUp .6s ease .4s both;
+    }
+    .stat { border-left: 2px solid var(--red); padding-left: 1rem; }
+    .stat-num { font-family: var(--font-display); font-size: 2.5rem; color: var(--white); line-height: 1; }
+    .stat-label { font-size: .8rem; letter-spacing: 1px; color: var(--grey); margin-top: .2rem; }
+
+    /* scroll cue */
+    .scroll-cue {
+      position: absolute; bottom: 2.5rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: .5rem;
+      font-size: .7rem; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--grey); z-index: 2;
+      animation: fadeIn 1s ease 1s both;
+    }
+    .scroll-line {
+      width: 1px; height: 50px;
+      background: linear-gradient(var(--red), transparent);
+      animation: scrollDrop 1.5s ease-in-out infinite;
+    }
+    @keyframes scrollDrop {
+      0%   { transform: scaleY(0); transform-origin: top; }
+      50%  { transform: scaleY(1); transform-origin: top; }
+      51%  { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    /* ─── MARQUEE STRIP ──────────────────────────────────────────────────────── */
+    .marquee-strip {
+      background: var(--red);
+      overflow: hidden;
+      padding: .75rem 0;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      position: relative; z-index: 2;
+    }
+    .marquee-track {
+      display: flex; gap: 3rem;
+      width: max-content;
+      animation: marquee 28s linear infinite;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .marquee-item {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      letter-spacing: 3px;
+      white-space: nowrap;
+      display: flex; align-items: center; gap: 1.5rem;
+    }
+    .marquee-dot { width: 6px; height: 6px; background: rgba(255,255,255,0.5); border-radius: 50%; }
+
+    /* ─── SECTIONS SHARED ────────────────────────────────────────────────────── */
+    section { padding: 7rem 3rem; position: relative; z-index: 2; }
+    .section-label { font-size: .75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--red); margin-bottom: 1rem; }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      letter-spacing: 2px; line-height: 1; text-transform: uppercase;
+    }
+    .section-title .stroke { -webkit-text-stroke: 1.5px var(--white); color: transparent; }
+    .section-body { color: rgba(245,240,235,0.6); line-height: 1.8; font-size: 1.05rem; max-width: 640px; }
+
+    /* reveal on scroll */
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ─── TAB PANELS ─────────────────────────────────────────────────────────── */
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ─── ABOUT ──────────────────────────────────────────────────────────────── */
+    #about { background: var(--dark); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      margin-top: 4rem;
+    }
+    .about-visual {
+      position: relative;
+      aspect-ratio: 4/3;
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .about-visual-inner {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--dark), var(--card));
+      display: flex; align-items: center; justify-content: center;
+    }
+    .globe {
+      width: 220px; height: 220px;
+      border: 1.5px solid var(--border);
+      border-radius: 50%;
+      position: relative;
+      animation: spin 20s linear infinite;
+    }
+    .globe::before {
+      content: '';
+      position: absolute; inset: 15px;
+      border: 1px dashed rgba(208,16,32,0.3);
+      border-radius: 50%;
+    }
+    .globe::after {
+      content: '';
+      position: absolute; inset: 35px;
+      border: 1px dashed rgba(208,16,32,0.2);
+      border-radius: 50%;
+    }
+    .globe-dot {
+      position: absolute; width: 10px; height: 10px;
+      background: var(--red); border-radius: 50%;
+      box-shadow: 0 0 12px var(--red);
+    }
+    .globe-dot:nth-child(1) { top: 20%; left: 15%; }
+    .globe-dot:nth-child(2) { top: 50%; right: 10%; }
+    .globe-dot:nth-child(3) { bottom: 25%; left: 40%; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .about-visual-label {
+      position: absolute; bottom: 1.5rem; left: 1.5rem;
+      font-size: .75rem; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--grey);
+    }
+    .about-text p { color: rgba(245,240,235,0.6); line-height: 1.9; font-size: 1.05rem; }
+    .about-text p + p { margin-top: 1.5rem; }
+    .highlight-line {
+      display: flex; align-items: center; gap: 1rem;
+      margin-top: 2rem;
+      padding: 1.2rem 1.5rem;
+      border: 1px solid var(--border);
+      background: rgba(208,16,32,0.04);
+    }
+    .highlight-line-icon { color: var(--red); font-size: 1.2rem; }
+    .highlight-line-text { font-size: .9rem; color: var(--white); font-weight: 500; }
+
+    /* ─── WHY CHOOSE ─────────────────────────────────────────────────────────── */
+    #why { background: var(--black); }
+    .why-header { max-width: 600px; }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5px;
+      margin-top: 4rem;
+      border: 1.5px solid var(--border);
+    }
+    .feature-card {
+      background: var(--card);
+      padding: 2.5rem 2rem;
+      border-right: 1.5px solid var(--border);
+      border-bottom: 1.5px solid var(--border);
+      position: relative; overflow: hidden;
+      transition: background .3s;
+    }
+    .feature-card:hover { background: #1f1f1f; }
+    .feature-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 0; height: 3px;
+      background: var(--red);
+      transition: width .4s ease;
+    }
+    .feature-card:hover::before { width: 100%; }
+    .feature-num { font-family: var(--font-display); font-size: 4rem; color: rgba(208,16,32,0.12); line-height: 1; margin-bottom: -.5rem; }
+    .feature-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .feature-title { font-weight: 600; font-size: 1.1rem; letter-spacing: .5px; margin-bottom: .8rem; }
+    .feature-desc { font-size: .9rem; color: rgba(245,240,235,0.55); line-height: 1.8; }
+
+    /* ─── DESTINATIONS ───────────────────────────────────────────────────────── */
+    #destinations { background: var(--dark); }
+    .dest-header { max-width: 600px; margin-bottom: 4rem; }
+    .dest-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+    .dest-card {
+      border: 1px solid var(--border);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      position: relative; overflow: hidden;
+      transition: transform .3s, box-shadow .3s;
+      cursor: default;
+    }
+    .dest-card::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(208,16,32,0.06), transparent);
+      opacity: 0; transition: opacity .3s;
+    }
+    .dest-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(208,16,32,0.15); }
+    .dest-card:hover::after { opacity: 1; }
+    .dest-flag { font-size: 3.5rem; margin-bottom: 1rem; }
+    .dest-name { font-family: var(--font-display); font-size: 1.8rem; letter-spacing: 2px; }
+    .dest-sub { font-size: .8rem; color: var(--grey); letter-spacing: 1px; margin-top: .3rem; }
+    .dest-arrow { margin-top: 1rem; color: var(--red); font-size: 1.2rem; opacity: 0; transform: translateY(5px); transition: opacity .3s, transform .3s; }
+    .dest-card:hover .dest-arrow { opacity: 1; transform: none; }
+    .route-bar {
+      margin-top: 3rem;
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1.5rem 2rem;
+      border: 1px solid var(--border);
+      background: rgba(208,16,32,0.04);
+      flex-wrap: wrap;
+    }
+    .route-bar-label { font-size: .75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--grey); }
+    .route-item { font-weight: 600; font-size: .95rem; }
+    .route-sep { color: var(--red); font-size: 1.2rem; }
+
+    /* ─── SERVICES ───────────────────────────────────────────────────────────── */
+    #services { background: var(--black); }
+    .services-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      margin-top: 4rem;
+      align-items: start;
+    }
+    .service-list { display: flex; flex-direction: column; gap: 1px; }
+    .service-item {
+      display: flex; align-items: flex-start; gap: 1.5rem;
+      padding: 1.8rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+    }
+    .service-item:hover, .service-item.active { border-color: var(--border); background: rgba(208,16,32,0.04); }
+    .service-item.active .service-item-num { color: var(--red); }
+    .service-item-num { font-family: var(--font-display); font-size: 1.5rem; color: var(--grey); min-width: 2.5rem; transition: color .2s; }
+    .service-item-info h3 { font-weight: 600; font-size: 1rem; letter-spacing: .5px; margin-bottom: .4rem; }
+    .service-item-info p { font-size: .875rem; color: var(--grey); line-height: 1.7; }
+    .service-visual {
+      position: sticky; top: 100px;
+      aspect-ratio: 1;
+      border: 1px solid var(--border);
+      background: var(--card);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      transition: all .4s ease;
+    }
+    .service-visual-content { text-align: center; padding: 2rem; }
+    .service-visual-icon { font-size: 5rem; margin-bottom: 1.5rem; transition: all .3s; }
+    .service-visual-title { font-family: var(--font-display); font-size: 2rem; letter-spacing: 2px; margin-bottom: 1rem; color: var(--red); }
+    .service-visual-desc { font-size: .9rem; color: var(--grey); line-height: 1.8; }
+
+    /* ─── CTA BAND ───────────────────────────────────────────────────────────── */
+    .cta-band {
+      padding: 5rem 3rem;
+      background: var(--red);
+      text-align: center;
+      position: relative; overflow: hidden; z-index: 2;
+    }
+    .cta-band::before {
+      content: 'ELLY';
+      position: absolute;
+      font-family: var(--font-display);
+      font-size: 20rem;
+      opacity: 0.06;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    .cta-band-title { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: 3px; text-transform: uppercase; position: relative; z-index: 1; }
+    .cta-band-sub { margin-top: 1rem; font-size: 1.1rem; opacity: .85; position: relative; z-index: 1; }
+    .cta-band .btn-white {
+      margin-top: 2rem;
+      display: inline-block;
+      background: var(--black);
+      color: var(--white);
+      padding: 1rem 2.5rem;
+      font-weight: 600; letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border: 2px solid var(--black);
+      transition: background .2s, color .2s, transform .15s;
+      position: relative; z-index: 1;
+    }
+    .cta-band .btn-white:hover { background: transparent; color: var(--white); border-color: var(--white); transform: translateY(-2px); }
+
+    /* ─── CONTACT ────────────────────────────────────────────────────────────── */
+    #contact { background: var(--dark); }
+    .contact-header { max-width: 500px; margin-bottom: 4rem; }
+    .contact-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .contact-card {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 1.2rem;
+      padding: 3rem 2rem;
+      border: 1px solid var(--border);
+      background: var(--card);
+      text-align: center;
+      cursor: pointer;
+      transition: transform .3s, box-shadow .3s, border-color .3s, background .3s;
+      position: relative; overflow: hidden;
+      text-decoration: none;
+    }
+    .contact-card::before {
+      content: '';
+      position: absolute; bottom: 0; left: 0;
+      height: 3px; width: 0;
+      background: var(--red);
+      transition: width .4s;
+    }
+    .contact-card:hover { transform: translateY(-8px); box-shadow: 0 24px 60px rgba(0,0,0,0.4); border-color: rgba(208,16,32,0.4); background: #1e1e1e; }
+    .contact-card:hover::before { width: 100%; }
+    .icon-fallback {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+      transition: transform .3s;
+    }
+    .icon-fallback-wa  { background: #25D366; }
+    .icon-fallback-tel { background: var(--red); }
+    .icon-fallback-gm  { background: #EA4335; }
+    .contact-card:hover .icon-fallback { transform: scale(1.1) rotate(-4deg); }
+    .contact-card-title { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 2px; }
+    .contact-card-value { font-size: .85rem; color: var(--grey); letter-spacing: .5px; }
+    .contact-card-cta { font-size: .75rem; color: var(--red); letter-spacing: 2px; text-transform: uppercase; font-weight: 600; }
+
+    /* ─── FOOTER ─────────────────────────────────────────────────────────────── */
+    footer {
+      background: #050505;
+      padding: 3rem;
+      border-top: 1px solid var(--border);
+      display: flex; flex-wrap: wrap;
+      align-items: center; justify-content: space-between;
+      gap: 1.5rem;
+      position: relative; z-index: 2;
+    }
+    .footer-logo { font-family: var(--font-display); font-size: 1.6rem; letter-spacing: 2px; }
+    .footer-logo span { color: var(--red); }
+    .footer-copy { font-size: .8rem; color: var(--grey); }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a { font-size: .8rem; color: var(--grey); transition: color .2s; letter-spacing: 1px; }
+    .footer-links a:hover { color: var(--white); }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────────────────────── */
+    @media (max-width: 1100px) {
+      .tab-switcher { margin: 0 .5rem; }
+      .tab-btn { padding: .4rem .8rem; font-size: .7rem; }
+    }
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      nav.scrolled { padding: .7rem 1.5rem; }
+      .nav-center { display: none; }
+      .nav-right .lang-switcher { display: none; }
+      .nav-right .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      #home { padding: 9rem 1.5rem 4rem; }
+      .hero-stats { gap: 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-visual { max-width: 400px; }
+      .services-layout { grid-template-columns: 1fr; gap: 2rem; }
+      .service-visual { position: static; }
+      .contact-cards { grid-template-columns: 1fr; }
+      .cta-band { padding: 3.5rem 1.5rem; }
+      section { padding: 5rem 1.5rem; }
+      footer { flex-direction: column; align-items: flex-start; }
+      .route-bar { padding: 1rem 1.2rem; }
+    }
+    @media (max-width: 600px) {
+      .hero-title { font-size: clamp(3rem, 16vw, 5rem); }
+      .dest-grid { grid-template-columns: 1fr 1fr; }
+      .contact-cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div id="cursor"></div>
+
+<!-- ANIMATED BACKGROUND CANVAS -->
+<canvas id="scene-canvas"></canvas>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#home" class="nav-logo">ELLY<span>.</span></a>
+  <div class="nav-center">
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" data-section="home" data-t="nav.about" onclick="showTab('about');return false;">À Propos</a></li>
+      <li><a href="#" data-section="why" onclick="scrollToSection('why');return false;" data-t="nav.why">Pourquoi</a></li>
+      <li><a href="#" data-section="destinations" onclick="scrollToSection('destinations');return false;" data-t="nav.destinations">Destinations</a></li>
+      <li><a href="#" data-section="services" onclick="scrollToSection('services');return false;" data-t="nav.services">Services</a></li>
+    </ul>
+    <!-- Tab switcher: About / Contact -->
+    <div class="tab-switcher" id="tabSwitcher">
+      <button class="tab-btn active" onclick="showTab('about')" id="tab-about" data-t="tabs.about">À Propos</button>
+      <button class="tab-btn" onclick="showTab('contact')" id="tab-contact" data-t="tabs.contact">Contact</button>
+    </div>
+  </div>
+  <div class="nav-right">
+    <div class="lang-switcher" id="langSwitcher"></div>
+    <a href="#" class="nav-links" style="display:contents">
+      <span class="nav-cta" onclick="showTab('contact')" style="cursor:pointer" data-t="nav.contact">Contact</span>
+    </a>
+  </div>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#" onclick="showTab('about');closeMobile();" data-t="tabs.about">À Propos</a>
+  <a href="#" onclick="scrollToSection('why');closeMobile();" data-t="nav.why">Pourquoi</a>
+  <a href="#" onclick="scrollToSection('destinations');closeMobile();" data-t="nav.destinations">Destinations</a>
+  <a href="#" onclick="scrollToSection('services');closeMobile();" data-t="nav.services">Services</a>
+  <a href="#" onclick="showTab('contact');closeMobile();" data-t="tabs.contact">Contact</a>
+  <div class="mobile-lang" id="mobileLang"></div>
+</div>
+
+<!-- ═══ HERO ═══════════════════════════════════════════════════════════════════ -->
+<section id="home">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-content">
+    <div class="hero-badge" data-t="hero.badge">Maroc ↔ Europe — Transferts de confiance</div>
+    <h1 class="hero-title">
+      <span data-t="hero.title1">Elly</span><br>
+      <span class="red" data-t="hero.title2">Services</span><br>
+      <span class="stroke" data-t="hero.title3">Colis</span>
+    </h1>
+    <p class="hero-sub" data-t="hero.sub">
+      Transferts rapides, sûrs et fiables de colis entre le Maroc et l'Europe.
+    </p>
+    <div class="hero-actions">
+      <a href="#" class="btn-primary" onclick="showTab('contact');return false;" data-t="hero.cta1">Envoyer un colis</a>
+      <a href="#" class="btn-ghost" onclick="scrollToSection('why');return false;" data-t="hero.cta2">Pourquoi nous</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num" data-t="hero.stat1num">3+</div>
+        <div class="stat-label" data-t="hero.stat1lbl">Pays Européens</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" data-t="hero.stat2num">100%</div>
+        <div class="stat-label" data-t="hero.stat2lbl">Service fiable</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" data-t="hero.stat3num">2-Way</div>
+        <div class="stat-label" data-t="hero.stat3lbl">Import & Export</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue">
+    <div class="scroll-line"></div>
+    <span data-t="hero.scroll">Défiler</span>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip" style="position:relative;z-index:2;">
+  <div class="marquee-track" id="marqueeTrack"></div>
+</div>
+
+<!-- ═══ TAB PANELS ═══════════════════════════════════════════════════════════ -->
+
+<!-- ABOUT TAB -->
+<div class="tab-panel active" id="panel-about">
+
+  <!-- ABOUT SECTION -->
+  <section id="about">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-visual-inner">
+          <div class="globe">
+            <div class="globe-dot"></div>
+            <div class="globe-dot"></div>
+            <div class="globe-dot"></div>
+          </div>
+        </div>
+        <div class="about-visual-label" data-t="about.routeLabel">Maroc ↔ Europe</div>
+      </div>
+      <div class="about-text reveal">
+        <p class="section-label" data-t="about.label">Qui sommes-nous</p>
+        <h2 class="section-title" style="margin-bottom:1.8rem">
+          <span data-t="about.title1">À propos</span> <span class="stroke" data-t="about.title2">d'Elly</span>
+        </h2>
+        <p data-t="about.p1">Chez Elly Services, nous sommes spécialisés dans les transferts fiables de colis...</p>
+        <p data-t="about.p2">Que vous envoyiez des colis du Maroc vers l'Europe...</p>
+        <p data-t="about.p3">Nous comprenons à quel point vos colis sont importants...</p>
+        <div class="highlight-line">
+          <span class="highlight-line-icon">📦</span>
+          <span class="highlight-line-text" data-t="about.highlight">Colis sécurisés. Prix justes. Service de confiance.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section id="why">
+    <div class="why-header reveal">
+      <p class="section-label" data-t="why.label">Nos avantages</p>
+      <h2 class="section-title"><span data-t="why.title1">Pourquoi</span> <span class="stroke" data-t="why.title2">Elly Services?</span></h2>
+      <p class="section-body" style="margin-top:1.2rem" data-t="why.sub">Cinq raisons solides...</p>
+    </div>
+    <div class="features-grid" id="featuresGrid"></div>
+  </section>
+
+  <!-- DESTINATIONS -->
+  <section id="destinations">
+    <div class="dest-header reveal">
+      <p class="section-label" data-t="destinations.label">Où nous expédions</p>
+      <h2 class="section-title"><span data-t="destinations.title1">Nos</span> <span class="stroke" data-t="destinations.title2">Destinations</span></h2>
+      <p class="section-body" style="margin-top:1.2rem" data-t="destinations.sub">Nous fournissons actuellement...</p>
+    </div>
+    <div class="dest-grid" id="destGrid"></div>
+    <div class="route-bar reveal" id="routeBar">
+      <span class="route-bar-label" data-t="destinations.routeLabel">Routes actives</span>
+      <span class="route-item" id="r-morocco">Maroc</span>
+      <span class="route-sep">⟷</span>
+      <span class="route-item" id="r-france">France</span>
+      <span class="route-sep">·</span>
+      <span class="route-item" id="r-germany">Allemagne</span>
+      <span class="route-sep">·</span>
+      <span class="route-item" id="r-netherlands">Pays-Bas</span>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="reveal">
+      <p class="section-label" data-t="services.label">Ce que nous faisons</p>
+      <h2 class="section-title"><span data-t="services.title1">Nos</span> <span class="stroke" data-t="services.title2">Services</span></h2>
+    </div>
+    <div class="services-layout">
+      <div class="service-list" id="serviceList"></div>
+      <div class="service-visual" id="serviceVisual">
+        <div class="service-visual-content">
+          <div class="service-visual-icon" id="svcIcon">🎁</div>
+          <div class="service-visual-title" id="svcTitle">Transfert Personnel</div>
+          <div class="service-visual-desc" id="svcDesc">...</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <h2 class="cta-band-title" data-t="cta.title">Prêt à expédier?</h2>
+    <p class="cta-band-sub" data-t="cta.sub">Contactez-nous aujourd'hui et nous nous occuperons du reste.</p>
+    <span class="btn-white" onclick="showTab('contact')" style="cursor:pointer" data-t="cta.btn">Contactez-nous maintenant</span>
+  </div>
+
+</div><!-- /panel-about -->
+
+<!-- CONTACT TAB -->
+<div class="tab-panel" id="panel-contact">
+  <section id="contact">
+    <div class="contact-header reveal">
+      <p class="section-label" data-t="contact.label">Nous joindre</p>
+      <h2 class="section-title">
+        <span data-t="contact.title1">Contactez</span> <span class="stroke" data-t="contact.title2">nous</span>
+      </h2>
+      <p class="section-body" style="margin-top:1.2rem" data-t="contact.sub">
+        Rejoignez-nous via WhatsApp, téléphone ou e-mail...
+      </p>
+    </div>
+    <div class="contact-cards" id="contactCards"></div>
+  </section>
+</div><!-- /panel-contact -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">ELLY<span>.</span></div>
+  <div class="footer-copy" data-t="footer.copy">© 2025 Elly Services. Tous droits réservés.</div>
+  <div class="footer-links">
+    <a href="#home" data-t="footer.home">Accueil</a>
+    <a href="#" onclick="showTab('about');return false;" data-t="footer.about">À Propos</a>
+    <a href="#" onclick="scrollToSection('destinations');return false;" data-t="footer.destinations">Destinations</a>
+    <a href="#" onclick="showTab('contact');return false;" data-t="footer.contact">Contact</a>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════════════════════════════════════ -->
+<script>
+/* ══════════════════════════════════════════════════════════════
+   GLOBALS
+══════════════════════════════════════════════════════════════ */
+let CONFIG = null;
+let TRANS  = null;
+let LANG   = 'fr';
+let currentTab = 'about';
+
+/* ══════════════════════════════════════════════════════════════
+   CURSOR
+══════════════════════════════════════════════════════════════ */
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top  = e.clientY + 'px';
+});
+function addCursorHover(selector) {
+  document.querySelectorAll(selector).forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('big'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
+  });
+}
+
+/* ══════════════════════════════════════════════════════════════
+   NAV SCROLL
+══════════════════════════════════════════════════════════════ */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+/* ══════════════════════════════════════════════════════════════
+   HAMBURGER
+══════════════════════════════════════════════════════════════ */
+const hamburger  = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+function closeMobile() {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+}
+
+/* ══════════════════════════════════════════════════════════════
+   TAB SWITCHING — NO SCROLL
+══════════════════════════════════════════════════════════════ */
+function showTab(name) {
+  currentTab = name;
+  // panels
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  const panel = document.getElementById('panel-' + name);
+  if (panel) {
+    panel.classList.add('active');
+    // fade effect
+    panel.style.animation = 'none';
+    panel.offsetHeight; // reflow
+    panel.style.animation = 'langFadeIn 0.35s ease both';
+  }
+  // tab buttons
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  const tb = document.getElementById('tab-' + name);
+  if (tb) tb.classList.add('active');
+
+  // scroll to top of section after minimal delay
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // re-trigger reveal animations
+  setTimeout(() => {
+    document.querySelectorAll('.reveal').forEach(el => {
+      el.classList.remove('visible');
+      observer.observe(el);
+    });
+  }, 50);
+}
+
+function scrollToSection(id) {
+  // Make sure about tab is showing (sections live there)
+  if (currentTab !== 'about') showTab('about');
+  setTimeout(() => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 150);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   REVEAL ON SCROLL
+══════════════════════════════════════════════════════════════ */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* ══════════════════════════════════════════════════════════════
+   TRANSLATION HELPERS
+══════════════════════════════════════════════════════════════ */
+function getT(path) {
+  if (!TRANS) return '';
+  const parts = path.split('.');
+  let node = TRANS.strings;
+  for (const p of parts) {
+    if (node == null) return path;
+    node = node[p];
+  }
+  if (typeof node === 'object' && node !== null && node[LANG] !== undefined) {
+    return node[LANG];
+  }
+  return typeof node === 'string' ? node : path;
+}
+
+function applyTranslations() {
+  const dir = TRANS.languages.find(l => l.code === LANG)?.dir || 'ltr';
+  document.documentElement.lang = LANG;
+  document.documentElement.dir  = dir;
+
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const key = el.dataset.t;
+    const val = getT(key);
+    if (val && val !== key) {
+      el.textContent = val;
+      el.classList.add('lang-fade');
+      el.addEventListener('animationend', () => el.classList.remove('lang-fade'), { once: true });
+    }
+  });
+
+  rebuildMarquee();
+  rebuildFeatures();
+  rebuildDest();
+  rebuildServices();
+  rebuildContactCards();
+  rebuildRouteBar();
+  updateLangButtons();
+}
+
+/* ══════════════════════════════════════════════════════════════
+   LANGUAGE SWITCHER UI
+══════════════════════════════════════════════════════════════ */
+function buildLangSwitcher() {
+  ['langSwitcher','mobileLang'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.innerHTML = '';
+    TRANS.languages.forEach(lng => {
+      const btn = document.createElement('button');
+      btn.className = 'lang-btn' + (lng.code === LANG ? ' active' : '');
+      btn.textContent = lng.label;
+      btn.title = lng.name;
+      btn.addEventListener('click', () => switchLang(lng.code));
+      el.appendChild(btn);
+    });
+  });
+}
+
+function updateLangButtons() {
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent === TRANS.languages.find(l => l.code === LANG)?.label);
+  });
+}
+
+function switchLang(code) {
+  LANG = code;
+  localStorage.setItem('elly-lang', code);
+  applyTranslations();
+  buildLangSwitcher();
+}
+
+/* ══════════════════════════════════════════════════════════════
+   MARQUEE
+══════════════════════════════════════════════════════════════ */
+function rebuildMarquee() {
+  const track = document.getElementById('marqueeTrack');
+  if (!track) return;
+  const items = TRANS.strings.marquee.items[LANG] || TRANS.strings.marquee.items['fr'];
+  const doubled = [...items, ...items];
+  track.innerHTML = '';
+  doubled.forEach(t => {
+    const span = document.createElement('span');
+    span.className = 'marquee-item';
+    span.innerHTML = `<span class="marquee-dot"></span>${t}`;
+    track.appendChild(span);
+  });
+}
+
+/* ══════════════════════════════════════════════════════════════
+   FEATURES GRID
+══════════════════════════════════════════════════════════════ */
+function rebuildFeatures() {
+  const grid = document.getElementById('featuresGrid');
+  if (!grid) return;
+  const features = TRANS.strings.why.features;
+  grid.innerHTML = '';
+  features.forEach((f, i) => {
+    const card = document.createElement('div');
+    card.className = 'feature-card reveal';
+    card.innerHTML = `
+      <div class="feature-num">0${i+1}</div>
+      <div class="feature-icon">${f.icon}</div>
+      <div class="feature-title">${f.title[LANG] || f.title.fr}</div>
+      <p class="feature-desc">${f.desc[LANG] || f.desc.fr}</p>
+    `;
+    grid.appendChild(card);
+    observer.observe(card);
+  });
+  addCursorHover('.feature-card');
+}
+
+/* ══════════════════════════════════════════════════════════════
+   DESTINATIONS
+══════════════════════════════════════════════════════════════ */
+function rebuildDest() {
+  const grid = document.getElementById('destGrid');
+  if (!grid) return;
+  const cards = TRANS.strings.destinations.cards;
+  grid.innerHTML = '';
+  cards.forEach(c => {
+    const div = document.createElement('div');
+    div.className = 'dest-card reveal';
+    div.innerHTML = `
+      <div class="dest-flag">${c.flag}</div>
+      <div class="dest-name">${c.name[LANG] || c.name.fr}</div>
+      <div class="dest-sub">${c.sub[LANG] || c.sub.fr}</div>
+      <div class="dest-arrow">→</div>
+    `;
+    grid.appendChild(div);
+    observer.observe(div);
+  });
+  addCursorHover('.dest-card');
+}
+
+function rebuildRouteBar() {
+  const cards = TRANS.strings.destinations.cards;
+  const ids = ['r-morocco','r-france','r-germany','r-netherlands'];
+  ids.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (el && cards[i]) el.textContent = cards[i].name[LANG] || cards[i].name.fr;
+  });
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SERVICES
+══════════════════════════════════════════════════════════════ */
+let activeServiceIdx = 0;
+function rebuildServices() {
+  const list = document.getElementById('serviceList');
+  if (!list) return;
+  const items = TRANS.strings.services.items;
+  list.innerHTML = '';
+  items.forEach((svc, idx) => {
+    const div = document.createElement('div');
+    div.className = 'service-item' + (idx === activeServiceIdx ? ' active' : '');
+    div.dataset.idx = idx;
+    div.innerHTML = `
+      <span class="service-item-num">0${idx+1}</span>
+      <div class="service-item-info">
+        <h3>${svc.title[LANG] || svc.title.fr}</h3>
+        <p>${svc.desc[LANG] || svc.desc.fr}</p>
+      </div>
+    `;
+    div.addEventListener('click', () => {
+      activeServiceIdx = idx;
+      rebuildServices();
+      updateServiceVisual(idx);
+    });
+    list.appendChild(div);
+  });
+  updateServiceVisual(activeServiceIdx);
+}
+
+function updateServiceVisual(idx) {
+  const items = TRANS.strings.services.items;
+  const svc = items[idx];
+  if (!svc) return;
+  document.getElementById('svcIcon').textContent  = svc.icon;
+  document.getElementById('svcTitle').textContent = svc.visual[LANG] || svc.visual.fr;
+  document.getElementById('svcDesc').textContent  = svc.desc[LANG]   || svc.desc.fr;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CONTACT CARDS
+══════════════════════════════════════════════════════════════ */
+function rebuildContactCards() {
+  const container = document.getElementById('contactCards');
+  if (!container || !CONFIG) return;
+  const ct  = TRANS.strings.contact.cards;
+  const cards = [
+    {
+      href:    CONFIG.contact.whatsapp.url,
+      fbClass: 'icon-fallback-wa',
+      fbText:  '💬',
+      title:   ct.whatsapp.title,
+      value:   CONFIG.contact.whatsapp.number,
+      cta:     ct.whatsapp.cta[LANG] || ct.whatsapp.cta.fr,
+      target:  '_blank'
+    },
+    {
+      href:    CONFIG.contact.phone.url,
+      fbClass: 'icon-fallback-tel',
+      fbText:  '📞',
+      title:   ct.phone.title[LANG] || ct.phone.title.fr,
+      value:   CONFIG.contact.phone.number,
+      cta:     ct.phone.cta[LANG] || ct.phone.cta.fr,
+      target:  '_self'
+    },
+    {
+      href:    CONFIG.contact.email.url,
+      fbClass: 'icon-fallback-gm',
+      fbText:  '✉️',
+      title:   ct.email.title[LANG] || ct.email.title.fr,
+      value:   CONFIG.contact.email.address,
+      cta:     ct.email.cta[LANG] || ct.email.cta.fr,
+      target:  '_blank'
+    }
+  ];
+  container.innerHTML = '';
+  cards.forEach(card => {
+    const a = document.createElement('a');
+    a.href = card.href; a.target = card.target; a.rel = 'noopener noreferrer';
+    a.className = 'contact-card';
+    a.innerHTML = `
+      <div class="icon-fallback ${card.fbClass}">${card.fbText}</div>
+      <div class="contact-card-title">${card.title}</div>
+      <div class="contact-card-value">${card.value}</div>
+      <div class="contact-card-cta">${card.cta}</div>
+    `;
+    container.appendChild(a);
+  });
+  addCursorHover('.contact-card');
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ANIMATED BACKGROUND SCENE
+   Scene loop: Plane lands → Package loaded into van → Van drives
+══════════════════════════════════════════════════════════════ */
+(function initScene() {
+  const canvas = document.getElementById('scene-canvas');
+  const ctx    = canvas.getContext('2d');
+  let W, H, dpr;
+
+  function resize() {
+    dpr = window.devicePixelRatio || 1;
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width  = W * dpr;
+    canvas.height = H * dpr;
+    canvas.style.width  = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.scale(dpr, dpr);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  // ── Scene state ──────────────────────────────────────────────
+  const SCENE_DURATION = 420; // frames per full loop
+  let frame = 0;
+
+  // ── Stars / particles ─────────────────────────────────────────
+  const stars = Array.from({length:60}, () => ({
+    x: Math.random(), y: Math.random() * 0.7,
+    r: Math.random() * 1.2 + 0.3,
+    a: Math.random() * 0.4 + 0.1
+  }));
+
+  // ── Ground lines ──────────────────────────────────────────────
+  function drawGround() {
+    const groundY = H * 0.72;
+    // tarmac
+    const grad = ctx.createLinearGradient(0, groundY, 0, H);
+    grad.addColorStop(0, 'rgba(20,20,20,0.95)');
+    grad.addColorStop(1, 'rgba(10,10,10,0.95)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, groundY, W, H - groundY);
+
+    // runway centre dashes
+    ctx.strokeStyle = 'rgba(208,16,32,0.18)';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([30, 20]);
+    ctx.lineDashOffset = -(frame * 2.5) % 50;
+    ctx.beginPath();
+    ctx.moveTo(0, groundY + 18);
+    ctx.lineTo(W, groundY + 18);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // runway edge lines
+    ctx.strokeStyle = 'rgba(245,240,235,0.06)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(0, groundY);
+    ctx.lineTo(W, groundY);
+    ctx.stroke();
+  }
+
+  // ── Stars ─────────────────────────────────────────────────────
+  function drawStars() {
+    stars.forEach(s => {
+      ctx.beginPath();
+      ctx.arc(s.x * W, s.y * H * 0.7, s.r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(245,240,235,${s.a})`;
+      ctx.fill();
+    });
+  }
+
+  // ── Moon ─────────────────────────────────────────────────────
+  function drawMoon() {
+    const mx = W * 0.82, my = H * 0.12, mr = 28;
+    const grad = ctx.createRadialGradient(mx,my,2,mx,my,mr);
+    grad.addColorStop(0,'rgba(245,240,235,0.9)');
+    grad.addColorStop(1,'rgba(200,180,150,0)');
+    ctx.beginPath();
+    ctx.arc(mx, my, mr, 0, Math.PI*2);
+    ctx.fillStyle = grad;
+    ctx.fill();
+    // crescent shadow
+    ctx.beginPath();
+    ctx.arc(mx+10, my-4, mr-4, 0, Math.PI*2);
+    ctx.fillStyle = 'rgba(10,10,10,0.6)';
+    ctx.fill();
+  }
+
+  // ── City silhouette ───────────────────────────────────────────
+  function drawCity() {
+    const groundY = H * 0.72;
+    const buildings = [
+      {x:0.05,w:0.05,h:0.18},{x:0.11,w:0.04,h:0.25},{x:0.16,w:0.06,h:0.20},
+      {x:0.23,w:0.03,h:0.30},{x:0.27,w:0.05,h:0.22},{x:0.75,w:0.04,h:0.26},
+      {x:0.80,w:0.06,h:0.18},{x:0.87,w:0.03,h:0.32},{x:0.91,w:0.05,h:0.22},
+      {x:0.97,w:0.04,h:0.15}
+    ];
+    ctx.fillStyle = 'rgba(15,15,15,0.92)';
+    buildings.forEach(b => {
+      const bh = groundY * b.h;
+      ctx.fillRect(b.x * W, groundY - bh, b.w * W, bh);
+      // windows
+      for (let wy = groundY - bh + 8; wy < groundY - 8; wy += 14) {
+        for (let wx = b.x * W + 4; wx < (b.x + b.w) * W - 4; wx += 10) {
+          if (Math.random() > 0.4) {
+            ctx.fillStyle = `rgba(208,16,32,${Math.random() * 0.3 + 0.05})`;
+            ctx.fillRect(wx, wy, 5, 7);
+          }
+        }
+      }
+      ctx.fillStyle = 'rgba(15,15,15,0.92)';
+    });
+  }
+
+  // ── Plane ─────────────────────────────────────────────────────
+  function drawPlane(t) {
+    // t: 0..1 (0 = plane entering from right high, 1 = plane landed left)
+    const groundY = H * 0.72;
+    const ease = 1 - Math.pow(1 - t, 2);
+    const px = W * (0.85 - ease * 0.6);
+    const py = H * 0.1 + ease * (groundY - H * 0.1 - 28);
+    const angle = -Math.atan2(
+      (groundY - H*0.1 - 28) - py + 1,
+      W * 0.6
+    ) * (1 - ease) * 0.5;
+
+    ctx.save();
+    ctx.translate(px, py);
+    ctx.rotate(angle);
+
+    const scale = 0.7;
+
+    // engine glow trail
+    const trail = ctx.createLinearGradient(0,0,60,0);
+    trail.addColorStop(0,'rgba(208,16,32,0.0)');
+    trail.addColorStop(1,'rgba(208,16,32,0.18)');
+    ctx.fillStyle = trail;
+    ctx.fillRect(20*scale, -2*scale, 80*scale, 4*scale);
+
+    // fuselage
+    ctx.fillStyle = 'rgba(245,240,235,0.92)';
+    ctx.beginPath();
+    ctx.ellipse(0, 0, 50*scale, 10*scale, 0, 0, Math.PI*2);
+    ctx.fill();
+
+    // nose cone
+    ctx.beginPath();
+    ctx.moveTo(-50*scale, 0);
+    ctx.lineTo(-72*scale, 2*scale);
+    ctx.lineTo(-72*scale, -2*scale);
+    ctx.closePath();
+    ctx.fill();
+
+    // wings
+    ctx.fillStyle = 'rgba(220,210,200,0.88)';
+    ctx.beginPath();
+    ctx.moveTo(-10*scale, 0);
+    ctx.lineTo(20*scale, -30*scale);
+    ctx.lineTo(30*scale, -30*scale);
+    ctx.lineTo(15*scale, 6*scale);
+    ctx.closePath();
+    ctx.fill();
+    // right wing
+    ctx.beginPath();
+    ctx.moveTo(-10*scale, 0);
+    ctx.lineTo(20*scale, 30*scale);
+    ctx.lineTo(30*scale, 30*scale);
+    ctx.lineTo(15*scale, -6*scale);
+    ctx.closePath();
+    ctx.fill();
+
+    // tail fin
+    ctx.fillStyle = 'rgba(208,16,32,0.85)';
+    ctx.beginPath();
+    ctx.moveTo(40*scale, 0);
+    ctx.lineTo(55*scale, -22*scale);
+    ctx.lineTo(55*scale, 0);
+    ctx.closePath();
+    ctx.fill();
+
+    // engine
+    ctx.fillStyle = 'rgba(30,30,30,0.9)';
+    ctx.beginPath();
+    ctx.ellipse(5*scale, 20*scale, 8*scale, 4*scale, 0, 0, Math.PI*2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.ellipse(5*scale, -20*scale, 8*scale, 4*scale, 0, 0, Math.PI*2);
+    ctx.fill();
+
+    // engine glow
+    ctx.beginPath();
+    ctx.arc(18*scale, 20*scale, 3*scale, 0, Math.PI*2);
+    ctx.fillStyle = 'rgba(208,16,32,0.6)';
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(18*scale, -20*scale, 3*scale, 0, Math.PI*2);
+    ctx.fill();
+
+    ctx.restore();
+
+    // landing gear (appears near ground)
+    if (t > 0.7) {
+      const gearAlpha = (t - 0.7) / 0.3;
+      ctx.save();
+      ctx.translate(px - 10*scale, py);
+      ctx.strokeStyle = `rgba(180,170,160,${gearAlpha * 0.9})`;
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(0,8*scale); ctx.lineTo(0,20*scale); ctx.stroke();
+      ctx.beginPath(); ctx.arc(0,22*scale,4*scale,0,Math.PI*2);
+      ctx.fillStyle = `rgba(30,30,30,${gearAlpha})`;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    // runway lights that flash as plane approaches
+    if (t > 0.5) {
+      for (let i = 0; i < 8; i++) {
+        const lx = px - 80 + i * 22;
+        const ly = groundY + 10;
+        const flicker = Math.sin(frame * 0.3 + i) > 0 ? 0.9 : 0.2;
+        ctx.beginPath();
+        ctx.arc(lx, ly, 3, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(208,16,32,${flicker * (t - 0.5) * 2})`;
+        ctx.fill();
+      }
+    }
+  }
+
+  // ── Package falling from plane → ground ───────────────────────
+  function drawPackage(t, px, py) {
+    // t 0..1 package drops from plane to ground
+    const groundY = H * 0.72;
+    const ease = t * t;
+    const pkgX = px - 30;
+    const pkgY = py + ease * (groundY - py - 20);
+    const s = 16;
+
+    // parachute if mid-air
+    if (t < 0.8) {
+      const chute = ctx.createRadialGradient(pkgX, pkgY - 30, 2, pkgX, pkgY - 20, 22);
+      chute.addColorStop(0,'rgba(208,16,32,0.5)');
+      chute.addColorStop(1,'rgba(208,16,32,0.05)');
+      ctx.beginPath();
+      ctx.arc(pkgX, pkgY - 25, 22, Math.PI, 2*Math.PI);
+      ctx.fillStyle = chute;
+      ctx.fill();
+      // strings
+      ctx.strokeStyle='rgba(245,240,235,0.3)';ctx.lineWidth=1;
+      ctx.beginPath();ctx.moveTo(pkgX-18,pkgY-24);ctx.lineTo(pkgX-s/2,pkgY);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(pkgX+18,pkgY-24);ctx.lineTo(pkgX+s/2,pkgY);ctx.stroke();
+    }
+
+    // box
+    ctx.fillStyle = 'rgba(180,120,60,0.9)';
+    ctx.fillRect(pkgX - s/2, pkgY - s/2, s, s);
+    // box tape
+    ctx.strokeStyle='rgba(208,16,32,0.6)';ctx.lineWidth=2;
+    ctx.strokeRect(pkgX-s/2,pkgY-s/2,s,s);
+    ctx.beginPath();ctx.moveTo(pkgX-s/2,pkgY);ctx.lineTo(pkgX+s/2,pkgY);ctx.stroke();
+    // logo mark
+    ctx.fillStyle='rgba(245,240,235,0.6)';
+    ctx.font='bold 7px Bebas Neue, sans-serif';
+    ctx.textAlign='center';
+    ctx.fillText('E',pkgX,pkgY+3);
+  }
+
+  // ── Van / truck ───────────────────────────────────────────────
+  function drawVan(t, loaded) {
+    // t 0..1 van moves left to right
+    const groundY = H * 0.72;
+    const ease = t < 0.5 ? 2*t*t : -1+(4-2*t)*t; // smooth accel/decel
+    const vx = -120 + ease * (W + 180);
+    const vy = groundY - 28;
+
+    ctx.save();
+    ctx.translate(vx, vy);
+
+    // shadow
+    const shadow = ctx.createRadialGradient(30,40,2,30,40,60);
+    shadow.addColorStop(0,'rgba(0,0,0,0.3)');
+    shadow.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=shadow;
+    ctx.fillRect(-20,28,110,20);
+
+    // body
+    ctx.fillStyle='rgba(208,16,32,0.92)';
+    ctx.beginPath();
+    ctx.roundRect(0, 0, 90, 32, 4);
+    ctx.fill();
+
+    // cab
+    ctx.fillStyle='rgba(180,10,20,0.95)';
+    ctx.beginPath();
+    ctx.roundRect(62, -14, 30, 46, [4,4,0,0]);
+    ctx.fill();
+
+    // windshield
+    ctx.fillStyle='rgba(100,180,220,0.3)';
+    ctx.beginPath();
+    ctx.roundRect(66, -10, 22, 18, 2);
+    ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,0.2)';ctx.lineWidth=1;
+    ctx.strokeRect(66,-10,22,18);
+
+    // logo on side
+    ctx.fillStyle='rgba(245,240,235,0.95)';
+    ctx.font='bold 12px Bebas Neue, sans-serif';
+    ctx.textAlign='left';
+    ctx.fillText('ELLY', 10, 20);
+    ctx.font='6px Barlow, sans-serif';
+    ctx.fillText('SERVICES', 10, 28);
+
+    // stripe
+    ctx.fillStyle='rgba(245,240,235,0.15)';
+    ctx.fillRect(0, 14, 60, 3);
+
+    // package on van if loaded
+    if (loaded) {
+      ctx.fillStyle='rgba(180,120,60,0.9)';
+      ctx.fillRect(14, -12, 20, 14);
+      ctx.strokeStyle='rgba(208,16,32,0.7)';ctx.lineWidth=1.5;
+      ctx.strokeRect(14,-12,20,14);
+      ctx.fillStyle='rgba(245,240,235,0.6)';
+      ctx.font='bold 7px Bebas Neue,sans-serif';
+      ctx.textAlign='center';
+      ctx.fillText('E',24,-3);
+    }
+
+    // wheels
+    [[12, 32],[70, 32]].forEach(([wx,wy]) => {
+      ctx.beginPath();ctx.arc(wx,wy,10,0,Math.PI*2);
+      ctx.fillStyle='rgba(20,20,20,0.95)';ctx.fill();
+      ctx.beginPath();ctx.arc(wx,wy,5,0,Math.PI*2);
+      ctx.fillStyle='rgba(80,80,80,0.8)';ctx.fill();
+      // wheel spin
+      ctx.save();ctx.translate(wx,wy);ctx.rotate(frame*0.08*(t>0?1:0));
+      ctx.strokeStyle='rgba(120,120,120,0.5)';ctx.lineWidth=1;
+      for(let i=0;i<4;i++){
+        ctx.beginPath();
+        ctx.moveTo(0,0);
+        ctx.lineTo(Math.cos(i*Math.PI/2)*4.5,Math.sin(i*Math.PI/2)*4.5);
+        ctx.stroke();
+      }
+      ctx.restore();
+    });
+
+    // headlights
+    if (t > 0.1) {
+      const hg = ctx.createRadialGradient(90,10,1,90,10,40);
+      hg.addColorStop(0,'rgba(255,240,180,0.4)');
+      hg.addColorStop(1,'rgba(255,240,180,0)');
+      ctx.fillStyle=hg;
+      ctx.beginPath();ctx.arc(90,10,40,0,Math.PI*2);ctx.fill();
+      ctx.beginPath();ctx.arc(90,10,4,0,Math.PI*2);
+      ctx.fillStyle='rgba(255,240,180,0.8)';ctx.fill();
+    }
+
+    ctx.restore();
+
+    // exhaust puffs
+    if (t > 0.05 && t < 0.95) {
+      for (let p = 0; p < 3; p++) {
+        const age = ((frame + p * 8) % 24) / 24;
+        ctx.beginPath();
+        ctx.arc(vx - 5, groundY - 10 - age*20, (1-age)*8, 0, Math.PI*2);
+        ctx.fillStyle=`rgba(100,100,100,${(1-age)*0.15})`;
+        ctx.fill();
+      }
+    }
+  }
+
+  // ── Road scene (always visible) ───────────────────────────────
+  function drawRoad() {
+    const groundY = H * 0.72;
+    // road surface
+    ctx.fillStyle='rgba(18,18,18,0.7)';
+    ctx.fillRect(0, groundY + 28, W, 28);
+    ctx.strokeStyle='rgba(245,240,235,0.04)';ctx.lineWidth=1;
+    ctx.strokeRect(0,groundY+28,W,28);
+    // horizon glow
+    const hg = ctx.createLinearGradient(0,groundY-20,0,groundY+10);
+    hg.addColorStop(0,'rgba(208,16,32,0.04)');
+    hg.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=hg;ctx.fillRect(0,groundY-20,W,30);
+  }
+
+  // ── Scene orchestration ───────────────────────────────────────
+  function getScenePhase() {
+    const t = (frame % SCENE_DURATION) / SCENE_DURATION;
+    // Phase 0 (0–0.35): Plane landing
+    // Phase 1 (0.35–0.55): Package drops from plane
+    // Phase 2 (0.55–1.0): Van drives across
+    if (t < 0.35) return { phase: 0, t: t / 0.35 };
+    if (t < 0.55) return { phase: 1, t: (t - 0.35) / 0.20 };
+    return { phase: 2, t: (t - 0.55) / 0.45 };
+  }
+
+  // ── Atmosphere gradient ───────────────────────────────────────
+  function drawSky() {
+    const phase = getScenePhase();
+    // night sky with slight colour shift by phase
+    const redness = phase.phase === 0 ? phase.t * 0.04 : 0.04;
+    const grad = ctx.createLinearGradient(0,0,0,H*0.72);
+    grad.addColorStop(0,`rgba(2,2,8,0.98)`);
+    grad.addColorStop(0.4,`rgba(8,4,12,0.95)`);
+    grad.addColorStop(1,`rgba(${12+Math.round(redness*30)},6,6,0.9)`);
+    ctx.fillStyle=grad;
+    ctx.fillRect(0,0,W,H*0.72+2);
+  }
+
+  // ── Plane stored state ────────────────────────────────────────
+  let planeLandedX = 0, planeLandedY = 0;
+
+  function tick() {
+    ctx.clearRect(0,0,W,H);
+    const { phase, t } = getScenePhase();
+
+    drawSky();
+    drawStars();
+    drawMoon();
+    drawCity();
+    drawGround();
+    drawRoad();
+
+    if (phase === 0) {
+      // Plane landing
+      planeLandedX = W * (0.85 - t * 0.6) - 50;
+      planeLandedY = H * 0.1 + t * (H * 0.72 - H * 0.1 - 28) - 10;
+      drawPlane(t);
+    } else if (phase === 1) {
+      // Plane stationary, package drops
+      drawPlane(1);
+      drawPackage(t, planeLandedX, planeLandedY);
+    } else {
+      // Van driving with package
+      drawVan(t, true);
+      // stars fade as "day" approaches at end
+    }
+
+    frame++;
+    requestAnimationFrame(tick);
+  }
+
+  tick();
+})();
+
+/* ══════════════════════════════════════════════════════════════
+   BOOT: Load config + translations, then init
+══════════════════════════════════════════════════════════════ */
+async function boot() {
+  try {
+    const [cfgRes, transRes] = await Promise.all([
+      fetch('config.json'),
+      fetch('translations/translations.json')
+    ]);
+    CONFIG = await cfgRes.json();
+    TRANS  = await transRes.json();
+  } catch(e) {
+    // fallback minimal
+    CONFIG = {
+      contact: {
+        whatsapp: { url:'https://wa.me/212600000000', number:'+212 600 000 000' },
+        phone:    { url:'tel:+212600000000',           number:'+212 600 000 000' },
+        email:    { url:'mailto:contact@ellyservices.com', address:'contact@ellyservices.com' }
+      }
+    };
+  }
+
+  // Detect saved language preference
+  const savedLang = localStorage.getItem('elly-lang');
+  if (savedLang && TRANS?.languages?.find(l => l.code === savedLang)) {
+    LANG = savedLang;
+  } else {
+    LANG = TRANS?.defaultLang || 'fr';
+  }
+
+  buildLangSwitcher();
+  applyTranslations();
+  addCursorHover('a, button, .dest-card, .feature-card, .contact-card, .service-item, .lang-btn, .tab-btn');
+
+  // Default tab
+  showTab('about');
+}
+
+boot();
+</script>
+</body>
+</html>

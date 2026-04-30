@@ -1,0 +1,46 @@
+{
+  "company": {
+    "name": "Elly Services",
+    "tagline": "Fast, Safe & Trusted Package Transfer",
+    "description": "Reliable package transfers between Morocco and Europe"
+  },
+  "contact": {
+    "whatsapp": {
+      "number": "+212600000000",
+      "message": "Hello, I'm interested in your package transfer services!",
+      "url": "https://wa.me/212600000000?text=Hello%2C%20I'm%20interested%20in%20your%20package%20transfer%20services!"
+    },
+    "phone": {
+      "number": "+212600000000",
+      "url": "tel:+212600000000"
+    },
+    "email": {
+      "address": "contact@ellyservices.com",
+      "url": "mailto:contact@ellyservices.com"
+    }
+  },
+  "destinations": ["France", "Germany", "Netherlands", "Morocco"],
+  "assets": {
+    "whatsapp_icon": "assets/whatsapp.png",
+    "phone_icon": "assets/phone.png",
+    "gmail_icon": "assets/gmail.png"
+  },
+  "social": {
+    "instagram": "",
+    "facebook": ""
+  },
+  "animation": {
+    "scene_duration_ms": 6000,
+    "transition_ms": 800,
+    "particle_count": 18,
+    "road_speed": 3.5,
+    "plane_speed": 2.2,
+    "van_speed": 1.8
+  },
+  "ui": {
+    "default_tab": "about",
+    "nav_scroll_threshold": 60,
+    "reveal_threshold": 0.12,
+    "marquee_speed_s": 28
+  }
+}

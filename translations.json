@@ -1,0 +1,156 @@
+{
+  "defaultLang": "fr",
+  "languages": [
+    { "code": "fr", "label": "FR", "name": "Français", "dir": "ltr" },
+    { "code": "ar", "label": "AR", "name": "العربية", "dir": "rtl" },
+    { "code": "de", "label": "DE", "name": "Deutsch", "dir": "ltr" },
+    { "code": "nl", "label": "NL", "name": "Nederlands", "dir": "ltr" }
+  ],
+  "strings": {
+    "nav": {
+      "about":        { "fr": "À Propos",   "ar": "من نحن",      "de": "Über uns",    "nl": "Over ons" },
+      "why":          { "fr": "Pourquoi",   "ar": "لماذا نحن",   "de": "Warum wir",   "nl": "Waarom" },
+      "destinations": { "fr": "Destinations","ar": "الوجهات",    "de": "Ziele",       "nl": "Bestemmingen" },
+      "services":     { "fr": "Services",   "ar": "خدماتنا",     "de": "Leistungen",  "nl": "Diensten" },
+      "contact":      { "fr": "Contact",    "ar": "اتصل بنا",    "de": "Kontakt",     "nl": "Contact" }
+    },
+    "hero": {
+      "badge":    { "fr": "Maroc ↔ Europe — Transferts de confiance", "ar": "المغرب ↔ أوروبا — نقل موثوق", "de": "Marokko ↔ Europa — Vertrauensvoller Transfer", "nl": "Marokko ↔ Europa — Vertrouwde Transfers" },
+      "title1":   { "fr": "Elly",        "ar": "Elly",        "de": "Elly",        "nl": "Elly" },
+      "title2":   { "fr": "Services",    "ar": "Services",    "de": "Services",    "nl": "Services" },
+      "title3":   { "fr": "Colis",       "ar": "الطرود",      "de": "Pakete",      "nl": "Pakket" },
+      "sub":      { "fr": "Transferts rapides, sûrs et fiables de colis entre le Maroc et l'Europe. Nous connectons familles, entreprises et communautés à travers les frontières.", "ar": "نقل سريع وآمن وموثوق للطرود بين المغرب وأوروبا. نربط العائلات والشركات والمجتمعات عبر الحدود.", "de": "Schnelle, sichere und zuverlässige Pakettransfers zwischen Marokko und Europa. Wir verbinden Familien, Unternehmen und Gemeinschaften über Grenzen hinweg.", "nl": "Snelle, veilige en betrouwbare pakketoverdrachten tussen Marokko en Europa. We verbinden families, bedrijven en gemeenschappen over grenzen heen." },
+      "cta1":     { "fr": "Envoyer un colis", "ar": "أرسل طردًا", "de": "Paket senden", "nl": "Pakket sturen" },
+      "cta2":     { "fr": "Pourquoi nous", "ar": "لماذا نحن", "de": "Warum wir", "nl": "Waarom wij" },
+      "stat1num": { "fr": "3+", "ar": "3+", "de": "3+", "nl": "3+" },
+      "stat1lbl": { "fr": "Pays Européens", "ar": "دول أوروبية", "de": "Europäische Länder", "nl": "Europese landen" },
+      "stat2num": { "fr": "100%", "ar": "100%", "de": "100%", "nl": "100%" },
+      "stat2lbl": { "fr": "Service fiable", "ar": "خدمة موثوقة", "de": "Vertrauenswürdiger Service", "nl": "Betrouwbare service" },
+      "stat3num": { "fr": "2-Way", "ar": "اتجاهان", "de": "2-Wege", "nl": "2-Weg" },
+      "stat3lbl": { "fr": "Import & Export", "ar": "استيراد وتصدير", "de": "Import & Export", "nl": "Import & Export" },
+      "scroll":   { "fr": "Défiler", "ar": "مرر", "de": "Scrollen", "nl": "Scrollen" }
+    },
+    "marquee": {
+      "items": {
+        "fr": ["Livraison fiable","Prix abordables","Maroc → Europe","France","Allemagne","Pays-Bas","Import & Export","Colis sécurisés","Prix justes","Service de confiance"],
+        "ar": ["توصيل موثوق","أسعار معقولة","المغرب → أوروبا","فرنسا","ألمانيا","هولندا","استيراد وتصدير","طرود آمنة","أسعار عادلة","خدمة موثوقة"],
+        "de": ["Zuverlässige Lieferung","Günstige Preise","Marokko → Europa","Frankreich","Deutschland","Niederlande","Import & Export","Sichere Pakete","Faire Preise","Vertrauensvoller Service"],
+        "nl": ["Betrouwbare levering","Betaalbare prijzen","Marokko → Europa","Frankrijk","Duitsland","Nederland","Import & Export","Veilige pakketten","Eerlijke prijzen","Vertrouwde service"]
+      }
+    },
+    "about": {
+      "label":  { "fr": "Qui sommes-nous", "ar": "من نحن", "de": "Wer wir sind", "nl": "Wie zijn wij" },
+      "title1": { "fr": "À propos", "ar": "عن", "de": "Über", "nl": "Over" },
+      "title2": { "fr": "d'Elly", "ar": "إيلي", "de": "Elly", "nl": "Elly" },
+      "p1":     { "fr": "Chez Elly Services, nous sommes spécialisés dans les transferts fiables de colis entre le Maroc et l'Europe, avec des routes de livraison de confiance vers et depuis la France, l'Allemagne et les Pays-Bas.", "ar": "في إيلي سيرفيسز، نتخصص في نقل الطرود بشكل موثوق بين المغرب وأوروبا، مع مسارات توصيل موثوقة من وإلى فرنسا وألمانيا وهولندا.", "de": "Bei Elly Services sind wir auf zuverlässige Pakettransfers zwischen Marokko und Europa spezialisiert, mit vertrauenswürdigen Lieferwegen nach und von Frankreich, Deutschland und den Niederlanden.", "nl": "Bij Elly Services zijn we gespecialiseerd in betrouwbare pakketoverdrachten tussen Marokko en Europa, met vertrouwde bezorgroutes van en naar Frankrijk, Duitsland en Nederland." },
+      "p2":     { "fr": "Que vous envoyiez des colis du Maroc vers l'Europe ou que vous receviez des expéditions au Maroc, nous offrons une solution sécurisée, rapide et abordable à laquelle vous pouvez faire confiance.", "ar": "سواء كنت ترسل طرودًا من المغرب إلى أوروبا أو تستقبل شحنات إلى المغرب، نحن نوفر حلاً آمنًا وسريعًا وبأسعار معقولة يمكنك الاعتماد عليه.", "de": "Ob Sie Pakete von Marokko nach Europa senden oder Sendungen zurück nach Marokko erhalten – wir bieten eine sichere, schnelle und erschwingliche Lösung, der Sie vertrauen können.", "nl": "Of u nu pakketten van Marokko naar Europa verstuurt of zendingen terug naar Marokko ontvangt, wij bieden een veilige, snelle en betaalbare oplossing die u kunt vertrouwen." },
+      "p3":     { "fr": "Nous comprenons à quel point vos colis sont importants — qu'il s'agisse d'affaires personnelles, de documents importants, de cadeaux pour la famille ou d'expéditions professionnelles. C'est pourquoi nous nous concentrons sur une seule promesse : votre colis arrive en toute sécurité, rapidement et au meilleur prix possible.", "ar": "نحن نفهم مدى أهمية طرودك — سواء كانت أغراضًا شخصية أو وثائق مهمة أو هدايا للعائلة أو شحنات تجارية. لهذا نركز على وعد واحد: يصل طردك بأمان وسرعة وبأفضل سعر ممكن.", "de": "Wir verstehen, wie wichtig Ihre Pakete sind – ob persönliche Gegenstände, wichtige Dokumente, Familiengeschenke oder Geschäftssendungen. Deshalb konzentrieren wir uns auf ein einfaches Versprechen: Ihr Paket kommt sicher, schnell und zum besten Preis an.", "nl": "We begrijpen hoe belangrijk uw pakketten zijn — of het nu persoonlijke bezittingen, belangrijke documenten, geschenken voor familie of zakelijke zendingen zijn. Daarom richten we ons op één simpele belofte: uw pakket arriveert veilig, snel en voor de beste prijs." },
+      "highlight": { "fr": "Colis sécurisés. Prix justes. Service de confiance.", "ar": "طرود آمنة. أسعار عادلة. خدمة موثوقة.", "de": "Sichere Pakete. Faire Preise. Vertrauensvoller Service.", "nl": "Veilige pakketten. Eerlijke prijzen. Vertrouwde service." },
+      "routeLabel": { "fr": "Maroc ↔ Europe", "ar": "المغرب ↔ أوروبا", "de": "Marokko ↔ Europa", "nl": "Marokko ↔ Europa" }
+    },
+    "why": {
+      "label":  { "fr": "Nos avantages", "ar": "مميزاتنا", "de": "Unsere Vorteile", "nl": "Onze voordelen" },
+      "title1": { "fr": "Pourquoi", "ar": "لماذا", "de": "Warum", "nl": "Waarom" },
+      "title2": { "fr": "Elly Services?", "ar": "إيلي سيرفيسز؟", "de": "Elly Services?", "nl": "Elly Services?" },
+      "sub":    { "fr": "Cinq raisons solides pour lesquelles des centaines de clients nous font confiance pour leurs précieuses expéditions chaque jour.", "ar": "خمسة أسباب قوية تجعل مئات العملاء يثقون بنا في شحناتهم الثمينة كل يوم.", "de": "Fünf starke Gründe, warum Hunderte von Kunden uns täglich mit ihren wertvollen Sendungen vertrauen.", "nl": "Vijf sterke redenen waarom honderden klanten ons dagelijks vertrouwen met hun waardevolle zendingen." },
+      "features": [
+        {
+          "icon": "🛡️",
+          "title": { "fr": "Livraison de confiance", "ar": "توصيل موثوق", "de": "Vertrauenswürdige Lieferung", "nl": "Betrouwbare levering" },
+          "desc":  { "fr": "La confiance est primordiale lors de l'envoi de colis précieux. Notre équipe gère chaque expédition avec soin, professionnalisme et pleine responsabilité.", "ar": "الثقة هي كل شيء عند إرسال الطرود الثمينة. فريقنا يتعامل مع كل شحنة باهتمام ومهنية ومسؤولية كاملة.", "de": "Vertrauen ist alles, wenn es um wertvolle Pakete geht. Unser Team bearbeitet jede Sendung mit Sorgfalt, Professionalität und voller Verantwortung.", "nl": "Vertrouwen is alles bij het verzenden van waardevolle pakketten. Ons team behandelt elke zending met zorg, professionaliteit en volledige verantwoordelijkheid." }
+        },
+        {
+          "icon": "💰",
+          "title": { "fr": "Prix abordables", "ar": "أسعار معقولة", "de": "Günstige Preise", "nl": "Betaalbare prijzen" },
+          "desc":  { "fr": "Un service de qualité ne doit pas être cher. Nous offrons des solutions d'expédition compétitives et à faible coût pour que vous puissiez envoyer ou recevoir des colis sans vous soucier des frais élevés.", "ar": "الجودة لا تعني بالضرورة التكلفة العالية. نقدم حلول شحن تنافسية وبأسعار منخفضة حتى تتمكن من إرسال أو استقبال الطرود دون قلق.", "de": "Qualitätsservice muss nicht teuer sein. Wir bieten wettbewerbsfähige und kostengünstige Versandlösungen, damit Sie Pakete ohne hohe Gebühren senden oder empfangen können.", "nl": "Kwaliteitsservice hoeft niet duur te zijn. We bieden concurrerende en goedkope verzendoplossingen zodat u pakketten kunt versturen of ontvangen zonder hoge kosten." }
+        },
+        {
+          "icon": "⚡",
+          "title": { "fr": "Service rapide & fiable", "ar": "خدمة سريعة وموثوقة", "de": "Schneller & zuverlässiger Service", "nl": "Snelle & betrouwbare service" },
+          "desc":  { "fr": "Nous valorisons votre temps. Notre processus de livraison est organisé, efficace et conçu pour garantir que votre colis arrive en toute sécurité et à temps.", "ar": "نحن نقدر وقتك. عملية التوصيل لدينا منظمة وفعالة ومصممة لضمان وصول طردك بأمان وفي الوقت المحدد.", "de": "Wir schätzen Ihre Zeit. Unser Lieferprozess ist organisiert, effizient und darauf ausgelegt, sicherzustellen, dass Ihr Paket sicher und pünktlich ankommt.", "nl": "We waarderen uw tijd. Ons leveringsproces is georganiseerd, efficiënt en ontworpen om ervoor te zorgen dat uw pakket veilig en op tijd aankomt." }
+        },
+        {
+          "icon": "🔄",
+          "title": { "fr": "Import & Export", "ar": "استيراد وتصدير", "de": "Import & Export", "nl": "Import & Export" },
+          "desc":  { "fr": "Nous gérons les deux directions : du Maroc vers la France, l'Allemagne et les Pays-Bas, et d'Europe vers le Maroc — le partenaire idéal pour les familles, les voyageurs et les entreprises.", "ar": "نتعامل مع الاتجاهين: من المغرب إلى فرنسا وألمانيا وهولندا، ومن أوروبا إلى المغرب — الشريك المثالي للعائلات والمسافرين والشركات.", "de": "Wir bearbeiten beide Richtungen: von Marokko nach Frankreich, Deutschland und den Niederlanden sowie von Europa zurück nach Marokko — der perfekte Partner für Familien, Reisende und Unternehmen.", "nl": "We verwerken beide richtingen: van Marokko naar Frankrijk, Duitsland en Nederland, en van Europa terug naar Marokko — de perfecte partner voor families, reizigers en bedrijven." }
+        },
+        {
+          "icon": "🤝",
+          "title": { "fr": "Satisfaction client d'abord", "ar": "رضا العملاء أولاً", "de": "Kundenzufriedenheit zuerst", "nl": "Klanttevredenheid eerst" },
+          "desc":  { "fr": "Chaque client compte pour nous. Nous offrons une communication claire, un soutien et une expérience d'expédition fluide du début à la fin.", "ar": "كل عميل مهم بالنسبة لنا. نوفر تواصلاً واضحًا ودعمًا وتجربة شحن سلسة من البداية إلى النهاية.", "de": "Jeder Kunde ist uns wichtig. Wir bieten klare Kommunikation, Unterstützung und ein reibungsloses Versanderlebnis von Anfang bis Ende.", "nl": "Elke klant is belangrijk voor ons. We bieden duidelijke communicatie, ondersteuning en een soepele verzendervaring van begin tot eind." }
+        }
+      ]
+    },
+    "destinations": {
+      "label":  { "fr": "Où nous expédions", "ar": "أين نشحن", "de": "Wohin wir liefern", "nl": "Waar we naartoe sturen" },
+      "title1": { "fr": "Nos", "ar": "وجهاتنا", "de": "Unsere", "nl": "Onze" },
+      "title2": { "fr": "Destinations", "ar": "", "de": "Ziele", "nl": "Bestemmingen" },
+      "sub":    { "fr": "Nous fournissons actuellement des services de transfert de colis entre le Maroc et trois grands pays européens, avec une logistique solide et une manutention de confiance sur chaque route.", "ar": "نقدم حاليًا خدمات نقل الطرود بين المغرب وثلاث دول أوروبية كبرى، مع لوجستيات قوية ومناولة موثوقة على كل مسار.", "de": "Wir bieten derzeit Pakettransferdienste zwischen Marokko und drei wichtigen europäischen Ländern an, mit starker Logistik und vertrauenswürdiger Abwicklung auf jeder Route.", "nl": "We bieden momenteel pakketoverdrachtdiensten aan tussen Marokko en drie grote Europese landen, met sterke logistiek en betrouwbare afhandeling op elke route." },
+      "cards": [
+        { "flag": "🇲🇦", "name": { "fr": "Maroc",       "ar": "المغرب",     "de": "Marokko",      "nl": "Marokko"    }, "sub": { "fr": "Hub principal",      "ar": "المركز الرئيسي", "de": "Hauptknotenpunkt", "nl": "Hoofdhub"          } },
+        { "flag": "🇫🇷", "name": { "fr": "France",      "ar": "فرنسا",      "de": "Frankreich",   "nl": "Frankrijk"  }, "sub": { "fr": "Route express",     "ar": "طريق سريع",      "de": "Express-Route",    "nl": "Express route"     } },
+        { "flag": "🇩🇪", "name": { "fr": "Allemagne",   "ar": "ألمانيا",    "de": "Deutschland",  "nl": "Duitsland"  }, "sub": { "fr": "Expédition directe","ar": "شحن مباشر",      "de": "Direktversand",    "nl": "Directe verzending"} },
+        { "flag": "🇳🇱", "name": { "fr": "Pays-Bas",    "ar": "هولندا",     "de": "Niederlande",  "nl": "Nederland"  }, "sub": { "fr": "Livraison fiable",  "ar": "توصيل موثوق",    "de": "Zuverlässige Lieferung","nl": "Betrouwbare levering"} }
+      ],
+      "routeLabel": { "fr": "Routes actives", "ar": "المسارات النشطة", "de": "Aktive Routen", "nl": "Actieve routes" }
+    },
+    "services": {
+      "label":  { "fr": "Ce que nous faisons", "ar": "ما نقدمه", "de": "Was wir tun", "nl": "Wat we doen" },
+      "title1": { "fr": "Nos", "ar": "خدماتنا", "de": "Unsere", "nl": "Onze" },
+      "title2": { "fr": "Services", "ar": "", "de": "Leistungen", "nl": "Diensten" },
+      "items": [
+        {
+          "icon": "🎁",
+          "title": { "fr": "Transfert de colis personnel", "ar": "نقل الطرود الشخصية", "de": "Persönlicher Pakettransfer", "nl": "Persoonlijke pakketoverdracht" },
+          "desc":  { "fr": "Envoyez des cadeaux, des objets personnels et des souvenirs précieux à vos proches au-delà des frontières — en toute sécurité et à prix abordable.", "ar": "أرسل الهدايا والأغراض الشخصية والمقتنيات الثمينة لأحبائك عبر الحدود — بأمان وبأسعار معقولة.", "de": "Senden Sie Geschenke, persönliche Gegenstände und wertvolle Erinnerungsstücke an Ihre Lieben über Grenzen hinweg — sicher und erschwinglich.", "nl": "Stuur geschenken, persoonlijke bezittingen en dierbare spullen naar uw dierbaren over grenzen heen — veilig en betaalbaar." },
+          "visual": { "fr": "Transfert Personnel", "ar": "نقل شخصي", "de": "Persönlicher Transfer", "nl": "Persoonlijke overdracht" }
+        },
+        {
+          "icon": "📄",
+          "title": { "fr": "Expédition de documents", "ar": "شحن الوثائق", "de": "Dokumentenversand", "nl": "Documenten verzenden" },
+          "desc":  { "fr": "Documents importants, papiers légaux et courriers officiels manipulés avec le plus haut niveau de soin et de sécurité.", "ar": "الوثائق المهمة والأوراق القانونية والرسائل الرسمية تُعالج بأعلى مستوى من العناية والأمان.", "de": "Wichtige Dokumente, Rechtspapiere und offizielle Schreiben werden mit höchstem Sorgfalts- und Sicherheitsniveau behandelt.", "nl": "Belangrijke documenten, juridische papieren en officiële brieven worden behandeld met het hoogste niveau van zorg en veiligheid." },
+          "visual": { "fr": "Expédition Documents", "ar": "شحن وثائق", "de": "Dokumentenversand", "nl": "Documenten" }
+        },
+        {
+          "icon": "📦",
+          "title": { "fr": "Expéditions professionnelles", "ar": "شحنات تجارية", "de": "Geschäftssendungen", "nl": "Zakelijke zendingen" },
+          "desc":  { "fr": "Solutions d'expédition B2B fiables pour les vendeurs en ligne, les détaillants et les entreprises opérant entre le Maroc et l'Europe.", "ar": "حلول شحن B2B موثوقة لتجار الإنترنت وتجار التجزئة والشركات العاملة بين المغرب وأوروبا.", "de": "Zuverlässige B2B-Versandlösungen für Online-Verkäufer, Einzelhändler und Unternehmen, die zwischen Marokko und Europa tätig sind.", "nl": "Betrouwbare B2B-verzendoplossingen voor online verkopers, retailers en bedrijven die actief zijn tussen Marokko en Europa." },
+          "visual": { "fr": "Expéditions Pro", "ar": "شحنات تجارية", "de": "Geschäftssendungen", "nl": "Zakelijk" }
+        },
+        {
+          "icon": "🏋️",
+          "title": { "fr": "Colis volumineux & lourds", "ar": "الطرود الكبيرة والثقيلة", "de": "Groß- & Schwersendungen", "nl": "Grote & zware pakketten" },
+          "desc":  { "fr": "Besoin d'expédier des articles grands ou lourds ? Nous proposons des solutions évolutives pour les expéditions plus importantes à des tarifs compétitifs.", "ar": "تحتاج لشحن أشياء كبيرة أو ثقيلة؟ نقدم حلولاً قابلة للتوسع للشحنات الأكبر بأسعار تنافسية.", "de": "Müssen Sie große oder schwere Artikel versenden? Wir bieten skalierbare Lösungen für größere Sendungen zu wettbewerbsfähigen Preisen.", "nl": "Moet u grote of zware artikelen verzenden? We bieden schaalbare oplossingen voor grotere zendingen tegen concurrerende tarieven." },
+          "visual": { "fr": "Colis Lourds", "ar": "طرود ثقيلة", "de": "Großsendungen", "nl": "Grote pakketten" }
+        }
+      ]
+    },
+    "cta": {
+      "title": { "fr": "Prêt à expédier?", "ar": "هل أنت مستعد للشحن؟", "de": "Bereit zu versenden?", "nl": "Klaar om te verzenden?" },
+      "sub":   { "fr": "Contactez-nous aujourd'hui et nous nous occuperons du reste.", "ar": "تواصل معنا اليوم وسنتولى الباقي.", "de": "Nehmen Sie noch heute Kontakt auf und wir erledigen den Rest.", "nl": "Neem vandaag nog contact op en wij regelen de rest." },
+      "btn":   { "fr": "Contactez-nous maintenant", "ar": "تواصل معنا الآن", "de": "Jetzt kontaktieren", "nl": "Nu contact opnemen" }
+    },
+    "contact": {
+      "label":  { "fr": "Nous joindre", "ar": "تواصل معنا", "de": "Kontakt aufnehmen", "nl": "Neem contact op" },
+      "title1": { "fr": "Contactez", "ar": "اتصل", "de": "Kontaktieren", "nl": "Contact" },
+      "title2": { "fr": "nous", "ar": "بنا", "de": "Sie uns", "nl": "opnemen" },
+      "sub":    { "fr": "Rejoignez-nous via WhatsApp, téléphone ou e-mail — choisissez ce qui vous convient le mieux.", "ar": "تواصل معنا عبر واتساب أو الهاتف أو البريد الإلكتروني — اختر ما يناسبك.", "de": "Erreichen Sie uns über WhatsApp, Telefon oder E-Mail — wählen Sie, was für Sie am einfachsten ist.", "nl": "Bereik ons via WhatsApp, telefoon of e-mail — kies wat het gemakkelijkst voor u is." },
+      "cards": {
+        "whatsapp": { "title": "WhatsApp", "cta": { "fr": "Discuter avec nous →", "ar": "تحدث معنا →", "de": "Mit uns chatten →", "nl": "Chat met ons →" } },
+        "phone":    { "title": { "fr": "Téléphone", "ar": "الهاتف", "de": "Telefon", "nl": "Telefoon" }, "cta": { "fr": "Appelez-nous →", "ar": "اتصل بنا →", "de": "Rufen Sie an →", "nl": "Bel ons →" } },
+        "email":    { "title": { "fr": "E-mail", "ar": "البريد الإلكتروني", "de": "E-Mail", "nl": "E-mail" }, "cta": { "fr": "Envoyer un email →", "ar": "أرسل بريدًا إلكترونيًا →", "de": "E-Mail senden →", "nl": "Stuur een e-mail →" } }
+      }
+    },
+    "footer": {
+      "copy":         { "fr": "© 2025 Elly Services. Tous droits réservés.", "ar": "© 2025 إيلي سيرفيسز. جميع الحقوق محفوظة.", "de": "© 2025 Elly Services. Alle Rechte vorbehalten.", "nl": "© 2025 Elly Services. Alle rechten voorbehouden." },
+      "home":         { "fr": "Accueil",     "ar": "الرئيسية",  "de": "Startseite",   "nl": "Home"         },
+      "about":        { "fr": "À Propos",    "ar": "من نحن",    "de": "Über uns",     "nl": "Over ons"     },
+      "destinations": { "fr": "Destinations","ar": "الوجهات",   "de": "Ziele",        "nl": "Bestemmingen" },
+      "contact":      { "fr": "Contact",     "ar": "اتصل بنا", "de": "Kontakt",      "nl": "Contact"      }
+    },
+    "tabs": {
+      "about":   { "fr": "À Propos",   "ar": "من نحن",   "de": "Über uns",  "nl": "Over ons"  },
+      "contact": { "fr": "Contact",    "ar": "اتصل بنا", "de": "Kontakt",   "nl": "Contact"   }
+    }
+  }
+}
